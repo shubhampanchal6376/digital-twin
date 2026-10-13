@@ -1,0 +1,26 @@
+{
+    "model_name": "HistGradientBoostingRegressor",
+    "target": "glucose_future_2h",
+    "prediction_horizon_minutes": 120,
+    "features": [
+        "glucose",
+        "glucose_lag_1",
+        "glucose_lag_3",
+        "glucose_lag_6",
+        "glucose_lag_12",
+        "glucose_mean_3",
+        "glucose_mean_6",
+        "glucose_std_6",
+        "glucose_change_15m",
+        "glucose_change_30m",
+        "steps",
+        "calories"
+    ],
+    "evaluation": {
+        "mae_mg_dl": 30.234,
+        "rmse_mg_dl": 39.879,
+        "r2": 0.3583
+    },
+    "status": "experimental_prototype",
+    "clinical_use": false
+}
