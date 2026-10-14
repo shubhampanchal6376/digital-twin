@@ -23,3 +23,6 @@ __pycache__/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
+
+# Generated processed datasets
+data/processed/

@@ -132,9 +132,34 @@ def load_participant_data(participant_id: str) -> pd.DataFrame:
 # --------------------------------------------------
 
 def build_features(data: pd.DataFrame) -> pd.DataFrame:
-    """Generate the historical features used during training."""
+    """Generate historical features after validating numeric inputs."""
 
     data = data.copy()
+
+    required_columns = ["glucose", "steps", "calories"]
+
+    missing_columns = [
+        column for column in required_columns
+        if column not in data.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(
+            f"Missing required columns: {missing_columns}"
+        )
+
+    for column in required_columns:
+        data[column] = pd.to_numeric(
+            data[column],
+            errors="coerce",
+        )
+
+        if not data[column].map(
+            lambda value: pd.notna(value) and abs(value) != float("inf")
+        ).all():
+            raise ValueError(
+                f"Missing or non-finite values found in {column}."
+            )
 
     glucose = data["glucose"]
 
@@ -144,21 +169,15 @@ def build_features(data: pd.DataFrame) -> pd.DataFrame:
     data["glucose_lag_12"] = glucose.shift(12)
 
     data["glucose_mean_3"] = (
-        glucose.shift(1)
-        .rolling(3)
-        .mean()
+        glucose.shift(1).rolling(3).mean()
     )
 
     data["glucose_mean_6"] = (
-        glucose.shift(1)
-        .rolling(6)
-        .mean()
+        glucose.shift(1).rolling(6).mean()
     )
 
     data["glucose_std_6"] = (
-        glucose.shift(1)
-        .rolling(6)
-        .std()
+        glucose.shift(1).rolling(6).std()
     )
 
     data["glucose_change_15m"] = (
@@ -170,8 +189,6 @@ def build_features(data: pd.DataFrame) -> pd.DataFrame:
     )
 
     return data
-
-
 # --------------------------------------------------
 # 5. GENERATE TWO-HOUR FORECAST
 # --------------------------------------------------
