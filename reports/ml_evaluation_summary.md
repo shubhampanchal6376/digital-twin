@@ -1,6 +1,7 @@
 # Glucose Forecasting — ML Evaluation Summary
 
 ## 1. Objective
+
 Evaluate the experimental glucose forecasting model against a persistence baseline for a two-hour prediction horizon.
 
 ## 2. Evaluation Metrics
@@ -26,27 +27,13 @@ The R² score of 0.3583 indicates that the model explains approximately 35.83% o
 
 ## 5. Participant-Level Evaluation
 
-The participant-level report indicates lower MAE than the persistence baseline for all five evaluated participants.
+The model achieved lower MAE than the persistence baseline for all five held-out participants.
 
-However, HUPA0027P contributes approximately 92.4% of the test rows. Consequently, the overall evaluation is heavily influenced by this participant.
-
-Participant-level results should therefore be considered alongside overall metrics.
+However, HUPA0027P contributes approximately 92.4% of all test rows. Therefore, the overall metrics are heavily influenced by this participant. Participant-level results should also be considered when interpreting performance.
 
 ## 6. Limitations
 
-- The model is an experimental prototype.
-- The dataset contains historical glucose measurements from a limited set of participants.
-- Performance may vary across participants.
-- The evaluation does not establish clinical validity or safety.
-- The model is not intended for diagnosis or treatment decisions.
-
-## 7. Existing Reports
-
-- `overall_model_evaluation.csv`
-- `participant_model_evaluation.csv`
-
-## 8. Conclusion
-
-HistGradientBoosting outperforms the persistence baseline on the reported evaluation metrics.
-
-Further validation on additional participants and more representative evaluation data is needed before making claims about generalization or clinical usefulness.
+- This is an experimental forecasting prototype, not a clinically validated model.
+- The exact training split used for the saved estimator has not been independently verified.
+- Results on these participants do not establish generalization to other populations or clinical usefulness.
+- Predictions must not be used as a substitute for professional medical advice.
