@@ -1,28 +1,32 @@
-# Python cache files
+# Python cache
 __pycache__/
 *.py[cod]
+.pytest_cache/
 
 # Python virtual environments
 .venv/
 .venv*/
+venv/
+env/
 
 # Environment variables and secrets
 .env
 .env.*
 
-# Jupyter temporary checkpoints
+# Jupyter temporary files
 .ipynb_checkpoints/
 
-# Local datasets: keep data files out of Git
-data/ehr/
-data/wearable/
+# Local cleanup backups
+backup_before_cleanup_*/
+.gitignore.backup
 
-# Python cache
-__pycache__/
-*.py[cod]
+# Dataset files: keep out of public Git until redistribution permissions are verified
+/data/ehr/
+/data/wearable/
+/data/processed/
 
-# Jupyter checkpoints
-.ipynb_checkpoints/
+# Temporary duplicate audit
+/duplicate_audit.csv
 
-# Generated processed datasets
-data/processed/
+# Nested local repository; do not publish inside this repository
+/digital-twin/

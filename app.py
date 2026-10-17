@@ -30,7 +30,7 @@ def predict_glucose(participant_id):
         return jsonify({
             "error": str(exc)
         }), 400
-    
+
     except Exception:
         app.logger.exception("Prediction request failed")
         return jsonify({
