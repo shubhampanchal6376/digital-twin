@@ -30,3 +30,10 @@ backup_before_cleanup_*/
 
 # Nested local repository; do not publish inside this repository
 /digital-twin/
+# Local project backups
+/project_backup_*.zip
+/notebooks/01_data_inspection_backup.ipynb
+
+# Local project backups
+/project_backup_*.zip
+/notebooks/01_data_inspection_backup.ipynb

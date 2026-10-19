@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1220">
+    <title>Happiest Health | Digital Twin</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">✚</span>
+            <div>
+                <h2>Happiest Health</h2>
+                <p>Digital Twin</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#overview" class="nav-link active">▦ Overview</a>
+            <a href="#monitor" class="nav-link">◉ Glucose Monitor</a>
+            <a href="#forecast" class="nav-link">⌁ ML Forecast</a>
+            <a href="#about" class="nav-link">ⓘ About Project</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="status-dot"></span>
+            <span id="connectionStatus">Checking API...</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">HAPPIEST HEALTH · RESEARCH PROJECT</p>
+                <h1>Glucose Intelligence Dashboard</h1>
+            </div>
+
+            <button id="refreshButton" class="secondary-button">
+                ↻ Refresh
+            </button>
+        </header>
+
+        <div class="notice">
+            <strong>Research prototype:</strong>
+            Predictions are experimental and not clinically validated.
+            Do not use them to make medical or treatment decisions.
+        </div>
+
+        <section id="overview">
+            <div class="section-heading">
+                <div>
+                    <h2>Overview</h2>
+                    <p>Explore participant glucose readings and model predictions.</p>
+                </div>
+                <span class="badge">ML Prototype</span>
+            </div>
+
+            <div class="metrics-grid">
+                <article class="metric-card">
+                    <p>Selected Participant</p>
+                    <h2 id="participantMetric">—</h2>
+                    <span>Dataset participant ID</span>
+                </article>
+
+                <article class="metric-card">
+                    <p>Current Glucose</p>
+                    <h2><span id="currentGlucose">—</span></h2>
+                    <span>Dataset value · units to verify</span>
+                </article>
+
+                <article class="metric-card">
+                    <p>2-Hour Forecast</p>
+                    <h2><span id="predictedGlucose">—</span></h2>
+                    <span>Experimental model output</span>
+                </article>
+
+                <article class="metric-card">
+                    <p>Prediction Status</p>
+                    <h2 id="predictionStatus">Waiting</h2>
+                    <span id="predictionTimestamp">No prediction loaded</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="monitor" class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Glucose Monitor</h2>
+                    <p>Select a participant from the available dataset.</p>
+                </div>
+            </div>
+
+            <div class="participant-controls">
+                <label for="participantId">Participant ID</label>
+
+                <select id="participantId">
+                    <option value="">Loading participants...</option>
+                </select>
+
+                <button id="loadButton" class="primary-button">
+                    Load Participant
+                </button>
+            </div>
+
+            <p class="helper-text">
+                Enter the exact participant CSV filename without the .csv extension.
+                The file must be available to your existing backend.
+            </p>
+
+            <div id="messageBox" class="message" role="status" aria-live="polite">
+                Enter a participant ID to begin.
+            </div>
+        </section>
+
+        <section id="forecast" class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>ML Forecast</h2>
+                    <p>Latest observed reading and the model's two-hour prediction.</p>
+                </div>
+            </div>
+
+            <div class="forecast-summary">
+                <div>
+                    <p>Latest observed timestamp</p>
+                    <strong id="latestTimestamp">—</strong>
+                </div>
+
+                <div>
+                    <p>Forecast horizon</p>
+                    <strong id="forecastHorizon">120 minutes</strong>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="forecastChart"></canvas>
+            </div>
+
+            <p class="helper-text">
+                The forecast chart shows the latest observed value and the
+                model's single two-hour forecast. It does not represent
+                intermediate predictions.
+            </p>
+        </section>
+
+        <section id="about" class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>About This Project</h2>
+                    <p>Happiest Health Digital Twin — experimental glucose forecasting.</p>
+                </div>
+            </div>
+
+            <div class="about-grid">
+                <div>
+                    <h3>Prediction service</h3>
+                    <p>
+                        Uses the existing Python prediction service and
+                        trained model.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Backend API</h3>
+                    <p>
+                        Flask endpoint:
+                        <code>/api/predict/&lt;participant_id&gt;</code>
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Limitations</h3>
+                    <p>
+                        Experimental results are not clinically validated
+                        and must not guide medical decisions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Happiest Health Digital Twin · Research Prototype
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
