@@ -166,3 +166,9 @@ digital-twin/
 â”‚   â””â”€â”€ prepare_glucose_features.py
 â”œâ”€â”€ requirements.txt
 â””â”€â”€ requirements-lock.txt
+
+## Prototype Demonstration Video
+
+Duration: 29 minutes
+
+[Watch the Happiest Health Digital Twin prototype](https://youtu.be/hDqdTFLCu8c)
